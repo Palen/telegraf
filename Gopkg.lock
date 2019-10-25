@@ -81,6 +81,14 @@
   version = "v0.4.9"
 
 [[projects]]
+  branch = "feature/convert_to_utf8_invalidstring"
+  digest = "1:1591bd878c1f203b2555643ee764b646fc2be9defc4cb9d09e1ac23619ec6db8"
+  name = "github.com/Palen/protobuf"
+  packages = ["proto"]
+  pruneopts = ""
+  revision = "9a598f8137268b9781691b7a05254c0bd8e7b065"
+
+[[projects]]
   digest = "1:322bf7f4bb312294fc551f6e2c82d02f2ab8f94920f4163b3deeb07a8141ac79"
   name = "github.com/Shopify/sarama"
   packages = ["."]
@@ -1666,6 +1674,7 @@
     "github.com/Azure/go-autorest/autorest",
     "github.com/Azure/go-autorest/autorest/azure/auth",
     "github.com/Microsoft/ApplicationInsights-Go/appinsights",
+    "github.com/Palen/protobuf/proto",
     "github.com/Shopify/sarama",
     "github.com/StackExchange/wmi",
     "github.com/aerospike/aerospike-client-go",

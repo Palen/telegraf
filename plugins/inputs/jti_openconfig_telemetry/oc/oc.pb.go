@@ -30,7 +30,7 @@ It has these top-level messages:
 */
 package telemetry
 
-import proto "github.com/golang/protobuf/proto"
+import proto "github.com/Palen/protobuf/proto"
 import fmt "fmt"
 import math "math"
 

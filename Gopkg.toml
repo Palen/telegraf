@@ -299,3 +299,7 @@
 [[constraint]]
   branch = "master"
   name = "github.com/cisco-ie/nx-telemetry-proto"
+
+[[override]]
+  branch = "feature/convert_to_utf8_invalidstring"
+  name = "github.com/Palen/protobuf"
