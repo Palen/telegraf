@@ -43,6 +43,12 @@ type Ping struct {
 	// URLs to ping
 	Urls []string
 
+	// Additional Tags to ping
+	AdditionalTags []string
+
+	// TagName
+	TagName string
+
 	// Method defines how to ping (native or exec)
 	Method string
 
@@ -108,8 +114,19 @@ func (p *Ping) Gather(acc telegraf.Accumulator) error {
 	if p.Interface != "" && p.listenAddr != "" {
 		p.listenAddr = getAddr(p.Interface)
 	}
+	additionalTags := len(p.AdditionalTags) > 0
+	if additionalTags && (len(p.AdditionalTags) != len(p.Urls)) {
+		acc.AddError(errors.New("additional_tags and urls must be equal!"))
+		return nil
+	}
+	for i, ip := range p.Urls {
 
-	for _, ip := range p.Urls {
+		var tags map[string]string
+		if additionalTags {
+			tags = map[string]string{"destination": ip, p.TagName: p.AdditionalTags[i]}
+		} else {
+			tags = map[string]string{"destination": ip}
+		}
 		_, err := net.LookupHost(ip)
 		if err != nil {
 			acc.AddFields("ping", map[string]interface{}{"result_code": 1}, map[string]string{"ip": ip})
@@ -119,10 +136,10 @@ func (p *Ping) Gather(acc telegraf.Accumulator) error {
 
 		if p.Method == "native" {
 			p.wg.Add(1)
-			go func(ip string) {
+			go func(ip string, tags map[string]string) {
 				defer p.wg.Done()
-				p.pingToURLNative(ip, acc)
-			}(ip)
+				p.pingToURLNative(ip, acc, tags)
+			}(ip, tags)
 		} else {
 			p.wg.Add(1)
 			go func(ip string) {
@@ -183,7 +200,7 @@ func hostPinger(binary string, timeout float64, args ...string) (string, error) 
 	return string(out), err
 }
 
-func (p *Ping) pingToURLNative(destination string, acc telegraf.Accumulator) {
+func (p *Ping) pingToURLNative(destination string, acc telegraf.Accumulator, tags map[string]string) {
 	ctx := context.Background()
 
 	network := "ip4"
@@ -265,7 +282,7 @@ finish:
 	close(resps)
 
 	r.Wait()
-	tags, fields := onFin(i, rsps, destination)
+	_, fields := onFin(i, rsps, destination)
 	acc.AddFields("ping", fields, tags)
 }
 
