@@ -9,6 +9,10 @@ import (
 	"sync"
 	"time"
 
+	"github.com/Palen/grpc-go"
+	"github.com/Palen/grpc-go/codes"
+	"github.com/Palen/grpc-go/credentials"
+	"github.com/Palen/grpc-go/status"
 	"github.com/influxdata/telegraf"
 	"github.com/influxdata/telegraf/internal"
 	internaltls "github.com/influxdata/telegraf/internal/tls"
@@ -16,10 +20,6 @@ import (
 	"github.com/influxdata/telegraf/plugins/inputs/jti_openconfig_telemetry/auth"
 	"github.com/influxdata/telegraf/plugins/inputs/jti_openconfig_telemetry/oc"
 	"golang.org/x/net/context"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/status"
 )
 
 type OpenConfigTelemetry struct {
