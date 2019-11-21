@@ -81,6 +81,51 @@
   version = "v0.4.9"
 
 [[projects]]
+  branch = "feature/fix_utf8_rpc"
+  digest = "1:61f0ce6e00360e3737f1e8871a90b083e7119a2706ad890bfef86cfd81fc316b"
+  name = "github.com/Palen/grpc-go"
+  packages = [
+    ".",
+    "attributes",
+    "backoff",
+    "balancer",
+    "balancer/base",
+    "balancer/roundrobin",
+    "binarylog/grpc_binarylog_v1",
+    "codes",
+    "connectivity",
+    "credentials",
+    "credentials/internal",
+    "encoding",
+    "encoding/proto",
+    "grpclog",
+    "internal",
+    "internal/backoff",
+    "internal/balancerload",
+    "internal/binarylog",
+    "internal/buffer",
+    "internal/channelz",
+    "internal/envconfig",
+    "internal/grpcrand",
+    "internal/grpcsync",
+    "internal/resolver/dns",
+    "internal/resolver/passthrough",
+    "internal/syscall",
+    "internal/transport",
+    "keepalive",
+    "metadata",
+    "naming",
+    "peer",
+    "resolver",
+    "serviceconfig",
+    "stats",
+    "status",
+    "tap",
+  ]
+  pruneopts = ""
+  revision = "4ce2930fe95d2d73e94caaafcb5e0eeeaca024bb"
+
+[[projects]]
   branch = "feature/convert_to_utf8_invalidstring"
   digest = "1:1591bd878c1f203b2555643ee764b646fc2be9defc4cb9d09e1ac23619ec6db8"
   name = "github.com/Palen/protobuf"
@@ -1674,6 +1719,10 @@
     "github.com/Azure/go-autorest/autorest",
     "github.com/Azure/go-autorest/autorest/azure/auth",
     "github.com/Microsoft/ApplicationInsights-Go/appinsights",
+    "github.com/Palen/grpc-go",
+    "github.com/Palen/grpc-go/codes",
+    "github.com/Palen/grpc-go/credentials",
+    "github.com/Palen/grpc-go/status",
     "github.com/Palen/protobuf/proto",
     "github.com/Shopify/sarama",
     "github.com/StackExchange/wmi",
@@ -1804,11 +1853,9 @@
     "google.golang.org/genproto/googleapis/api/monitoredres",
     "google.golang.org/genproto/googleapis/monitoring/v3",
     "google.golang.org/grpc",
-    "google.golang.org/grpc/codes",
     "google.golang.org/grpc/credentials",
     "google.golang.org/grpc/metadata",
     "google.golang.org/grpc/peer",
-    "google.golang.org/grpc/status",
     "gopkg.in/gorethink/gorethink.v3",
     "gopkg.in/ldap.v2",
     "gopkg.in/mgo.v2",
